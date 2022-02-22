@@ -6,6 +6,9 @@
 
 ndtset 4
 
+autoparal 1
+paral_kgb 1
+
 ############
 # Dataset 1
 ############
