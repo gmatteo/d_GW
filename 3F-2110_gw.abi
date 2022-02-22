@@ -1,0 +1,120 @@
+# Calculation of the GW corrections
+# Dataset 1: ground state calculation to get the density 
+# Dataset 2: NSCF run to produce the WFK file for 10 k-points in IBZ
+# Dataset 3: calculation of the screening (epsilon^-1 matrix for W)
+# Dataset 4: calculation of the Self-Energy matrix elements (GW corrections)
+
+ndtset 4
+
+############
+# Dataset 1
+############
+# SCF-GS run 
+nband1  152
+tolvrs1 1.0e-10
+
+############
+# Dataset 2
+############
+# Definition of parameters for the calculation of the WFK file
+nband2    1752       # Number of (occ and empty) bands to be computed
+nbdbuf2    219       # 1/8 of nband
+iscf2       -2
+getden2     -1
+tolwfr2  1.0d-18     # Will stop when this tolerance is achieved 
+
+############
+# Dataset 3
+############
+# Calculation of the screening (epsilon^-1 matrix)
+optdriver3   3       # Screening calculation
+getwfk3     -1       # Obtain WFK file from previous dataset
+nband3     876       # Bands to be used in the screening calculation (1/2 nband)
+ecuteps3     5       # Cut-off energy of the planewave set to represent the dielectric matrix.  
+                     # It is important to adjust this parameter.
+
+ppmfrq3    16.7 eV   # Imaginary frequency where to calculate the screening
+prtkden3    0
+
+############
+# Dataset 4
+############
+# Calculation of the Self-Energy matrix elements (GW corrections)
+optdriver4   4       # Self-Energy calculation
+getwfk4     -2       # Obtain WFK file from dataset 1
+getscr4     -1       # Obtain SCR file from previous dataset
+nband4    1314       # Bands to be used in the Self-Energy calculation (3/4 nband)
+ecutsigx4   25.0     # Dimension of the G sum in Sigma_x. 
+                     # (the dimension in Sigma_c is controlled by ecuteps)
+
+nkptgw4      1       # number of k-point where to calculate the GW correction
+kptgw4               # k-points in reduced coordinates
+   0.000    0.000    0.000
+bdgw4      74    77  # calculate GW corrections for bands from 74 to 77
+prtkden4   0
+
+# Data common to the three different datasets
+
+# Definition of the unit cell: fcc
+acell      8.2242178688E+00  8.5842825644E+00  8.1258223714E+01
+tolsym 1.0d-4
+chkprim 0
+
+#Definition of the atom types
+ntypat 2
+znucl 6 9
+
+#Definition of the atoms
+natom 32
+typat 24*1 8*2
+xred      4.3204103764E-01  4.0601828814E-01  4.2900536022E-01
+          5.6795896236E-01  5.9398171186E-01  5.7099463978E-01
+          9.3204103764E-01  5.9398171186E-01  5.7099463978E-01
+          6.7958962361E-02  4.0601828814E-01  4.2900536022E-01
+          6.7958962361E-02  9.0601828814E-01  5.7099463978E-01
+          9.3204103764E-01  9.3981711858E-02  4.2900536022E-01
+          5.6795896236E-01  9.3981711858E-02  4.2900536022E-01
+          4.3204103764E-01  9.0601828814E-01  5.7099463978E-01
+          4.3812547598E-01  4.1711110904E-01  4.8543488882E-01
+          5.6187452402E-01  5.8288889096E-01  5.1456511118E-01
+          9.3812547598E-01  5.8288889096E-01  5.1456511118E-01
+          6.1874524023E-02  4.1711110904E-01  4.8543488882E-01
+          6.1874524023E-02  9.1711110904E-01  5.1456511118E-01
+          9.3812547598E-01  8.2888890959E-02  4.8543488882E-01
+          5.6187452402E-01  8.2888890959E-02  4.8543488882E-01
+          4.3812547598E-01  9.1711110904E-01  5.1456511118E-01
+          4.3605068511E-01  4.1299441849E-01  5.4378242213E-01
+          5.6394931489E-01  5.8700558151E-01  4.5621757787E-01
+          9.3605068511E-01  5.8700558151E-01  4.5621757787E-01
+          6.3949314893E-02  4.1299441849E-01  5.4378242213E-01
+          6.3949314893E-02  9.1299441849E-01  4.5621757787E-01
+          9.3605068511E-01  8.7005581514E-02  5.4378242213E-01
+          5.6394931489E-01  8.7005581514E-02  5.4378242213E-01
+          4.3605068511E-01  9.1299441849E-01  4.5621757787E-01
+         -6.3121994580E-04  9.9362078518E-01  4.0024111492E-01
+          1.0006312199E+00  6.3792148206E-03  5.9975888508E-01
+          4.9936878005E-01  6.3792148206E-03  5.9975888508E-01
+          5.0063121995E-01  9.9362078518E-01  4.0024111492E-01
+          5.0063121995E-01  4.9362078518E-01  5.9975888508E-01
+          4.9936878005E-01  5.0637921482E-01  4.0024111492E-01
+          1.0006312199E+00  5.0637921482E-01  4.0024111492E-01
+         -6.3121994580E-04  4.9362078518E-01  5.9975888508E-01
+
+# Definition of the k-point grid
+ngkpt 6 6 1
+kptopt  1
+nshiftk 1
+shiftk    0.0 0.0 0.0
+istwfk *1         # This is mandatory in all the GW steps.
+
+# Definition of the planewave basis set (at convergence 16 Rydberg 8 Hartree)
+ecut 50.0         # Maximal kinetic energy cut-off, in Hartree
+
+# Definition of the SCF procedure
+nstep   100       # Maximal number of SCF cycles
+toldfe  1.0d-8    # Will stop when this tolerance is achieved on total energy
+diemac  12.0
+ixc -208012
+usekden 1
+gw_icutcoul 2
+vcutgeo 1 1 0
