@@ -17,6 +17,9 @@ jdtset 3 4
 #npkpt  16
 #npband 4
 
+autoparal 1
+paral_kgb 1
+
 ############
 # Dataset 1
 ############
