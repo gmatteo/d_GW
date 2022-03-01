@@ -4,7 +4,9 @@
 # Dataset 3: calculation of the screening (epsilon^-1 matrix for W)
 # Dataset 4: calculation of the Self-Energy matrix elements (GW corrections)
 
-ndtset 4
+#ndtset 4
+ndtset 1
+jdtset 1
 
 ############
 # Dataset 1
@@ -20,7 +22,7 @@ tolvrs1 1.0e-10
 nband2    3000       # Number of (occ and empty) bands to be computed
 nbdbuf2    375       # 1/8 of nband
 iscf2       -2
-getden2     -1
+getden2     1
 tolwfr2  1.0d-18     # Will stop when this tolerance is achieved 
 
 ############
@@ -28,7 +30,7 @@ tolwfr2  1.0d-18     # Will stop when this tolerance is achieved
 ############
 # Calculation of the screening (epsilon^-1 matrix)
 optdriver3   3       # Screening calculation
-getwfk3     -1       # Obtain WFK file from previous dataset
+getwfk3     2       # Obtain WFK file from previous dataset
 nband3    1500       # Bands to be used in the screening calculation (1/2 nband)
 ecuteps3     5       # Cut-off energy of the planewave set to represent the dielectric matrix.  
                      # It is important to adjust this parameter.
@@ -41,8 +43,8 @@ prtkden3    0
 ############
 # Calculation of the Self-Energy matrix elements (GW corrections)
 optdriver4   4       # Self-Energy calculation
-getwfk4     -2       # Obtain WFK file from dataset 1
-getscr4     -1       # Obtain SCR file from previous dataset
+getwfk4     2       # Obtain WFK file from dataset 1
+getscr4     3       # Obtain SCR file from previous dataset
 nband4     630       # Bands to be used in the Self-Energy calculation (3/4 nband)
 ecutsigx4   25.0     # Dimension of the G sum in Sigma_x. 
                      # (the dimension in Sigma_c is controlled by ecuteps)
@@ -62,7 +64,8 @@ chkprim 0
 
 #Definition of the atom types
 ntypat 2
-znucl 6 1
+#znucl 6 1
+znucl 6 9  # Changed by MG
 
 #Definition of the atoms
 natom 56
