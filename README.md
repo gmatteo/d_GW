@@ -6,7 +6,7 @@
 3F/3F-2110_gw.abi:natom 32  DONE
 3H/3H-2110_gw.abi:natom 32  DONE
 4F/4F-2110_gw.abi:natom 40  NSCF sub
-4H/4H-2110_gw.abi:natom 40  GW sub
+4H/4H-2110_gw.abi:natom 40  DONE
 5F/5F-2110_gw.abi:natom 48  NSCF sub # Had to change znucl.
 5H/5H-2110_gw.abi:natom 48  NSCF sub
 6F/6F-2110_gw.abi:natom 56  # Had to change znucl.
