@@ -14,6 +14,8 @@ jdtset 1
 # SCF-GS run 
 nband1   200
 tolvrs1 1.0e-10
+getden_filepath1 "6H-2110_gw_o_DS1_DEN"
+getwfk_filepath1 "6H-2110_gw_o_DS1_WFK"
 
 ############
 # Dataset 2
