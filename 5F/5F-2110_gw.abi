@@ -4,13 +4,16 @@
 # Dataset 3: calculation of the screening (epsilon^-1 matrix for W)
 # Dataset 4: calculation of the Self-Energy matrix elements (GW corrections)
 
-ndtset 1
-jdtset 2
+#ndtset 1
+#jdtset 2
 
-paral_kgb 1
-autoparal 1
+#paral_kgb 1
+#autoparal 1
 #npkpt 16
 #npband 4
+#
+ndtset 2
+jdtset 3 4
 
 ############
 # Dataset 1

@@ -12,8 +12,8 @@
 #npkpt 16
 #npband 4
 #
-ndtset 2
-jdtset 3 4
+ndtset 1
+jdtset 4
 
 ############
 # Dataset 1

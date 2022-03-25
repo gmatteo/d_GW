@@ -6,7 +6,10 @@
 
 #ndtset 4
 ndtset 1
-jdtset 1
+jdtset 2
+
+paral_kgb 1
+autoparal 1
 
 ############
 # Dataset 1
